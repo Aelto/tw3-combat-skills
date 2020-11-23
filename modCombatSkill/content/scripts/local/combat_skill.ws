@@ -63,7 +63,7 @@ function modCombatSkillHandleActions(action: SInputAction): bool {
     }
   }
 
-  // going backward
+  // going sideways
   if (theInput.GetActionValue('GI_AxisLeftX') != 0) {
     if (canPerformSidestepSkill()) {
       performMeleeSkill(PRT_SideStepSlash);
@@ -169,21 +169,20 @@ function updateSidestepSkillCooldown() {
 
   player_input = thePlayer.GetInputHandler();
 
-  player_input.mod_combat_skill_properties.sidestep_skill_cooldown = theGame.GetEngineTimeAsSeconds();
+  player_input.mod_combat_skill_properties.last_sidestep_skill_time = theGame.GetEngineTimeAsSeconds();
 }
 
 function drainPlayerStamina(repelType: EPlayerRepelType) {
-  // thePlayer.DrainStamina(
-  //   ESAT_LightAttack,
-  //   , // fixed value
-  //   , // fixed delay
-  //   , // ability name
-  //   1, // pause stamina regen duration
-  //   // todo: add cost mult
-  // );
   thePlayer.DrainStamina(
-    ESAT_FixedValue,
-    CalculateAttributeValue(thePlayer.GetTarget().GetAttributeValue( 'stamina_damage' ))
+    ESAT_LightAttack,
+    , // fixed value
+    , // fixed delay
+    , // ability name
+    1, // pause stamina regen duration
+    // todo: add cost mult
   );
+
+
+  // thePlayer.DrainStamina(ESAT_FixedValue, thePlayer.GetStat(BCS_Stamina) * 0.5f);
 }
 // modCombatSkill - END
