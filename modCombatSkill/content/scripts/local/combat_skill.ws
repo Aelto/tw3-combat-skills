@@ -52,19 +52,27 @@ function modCombatSkillHandleActions(action: SInputAction): bool {
   }
 
   // going backward
-  if (theInput.GetActionValue('GI_AxisLeftY') < 0.85) {
-    performMeleeSkill(PRT_Bash);
+  if (theInput.GetActionValue('GI_AxisLeftY') < -0.85) {
+    if (canPerformPhysicalSkill()) {
+      performMeleeSkill(PRT_Bash);
 
-    // early return to cancel the parry action
-    return true;
+      updatePhysicalSkillCooldown();
+      
+      // early return to cancel the parry action
+      return true;
+    }
   }
 
   // going backward
   if (theInput.GetActionValue('GI_AxisLeftX') != 0) {
-    performMeleeSkill(PRT_SideStepSlash);
+    if (canPerformSidestepSkill()) {
+      performMeleeSkill(PRT_SideStepSlash);
 
-    // early return to cancel the parry action
-    return true;
+      updateSidestepSkillCooldown();
+      
+      // early return to cancel the parry action
+      return true;
+    }
   }
 
   return false;
@@ -73,6 +81,9 @@ function modCombatSkillHandleActions(action: SInputAction): bool {
 function performMeleeSkill(repeltype: EPlayerRepelType) {
   var target: CActor;
   var distance: float;
+
+  // update the player's target
+  thePlayer.FindTarget();
 
   target = thePlayer.GetTarget();
   distance = VecDistance(target.GetWorldPosition(), thePlayer.GetWorldPosition());
@@ -83,7 +94,7 @@ function performMeleeSkill(repeltype: EPlayerRepelType) {
   //                     || for some reason, the sidestep, if done at the right
   //                     || time will force a T-pose to creatures. It looks like
   //                     \/ the game doesn't expect the slash to stagger.
-  if (distance < 1.5 && repeltype != PRT_SideStepSlash) {
+  if (distance < 2 && repeltype != PRT_SideStepSlash) {
     target.SetBehaviorVariable('repelType', (int)repeltype);
     target.AddEffectDefault(EET_CounterStrikeHit, thePlayer, "ReflexParryPerformed");
   }
@@ -137,22 +148,42 @@ function canPerformPhysicalSkill(): bool {
 }
 
 function updatePhysicalSkillCooldown() {
+  var player_input: CPlayerInput;
+
+  player_input = thePlayer.GetInputHandler();
+
+  player_input.mod_combat_skill_properties.last_physical_skill_time = theGame.GetEngineTimeAsSeconds();
+}
+
+function canPerformSidestepSkill(): bool {
   var props: modCombatSkill_properties;
 
   props = thePlayer.GetInputHandler()
     .mod_combat_skill_properties;
 
-  props.last_physical_skill_time = theGame.GetEngineTimeAsSeconds();
+  return theGame.GetEngineTimeAsSeconds() - props.sidestep_skill_cooldown > props.sidestep_skill_cooldown;
+}
+
+function updateSidestepSkillCooldown() {
+  var player_input: CPlayerInput;
+
+  player_input = thePlayer.GetInputHandler();
+
+  player_input.mod_combat_skill_properties.sidestep_skill_cooldown = theGame.GetEngineTimeAsSeconds();
 }
 
 function drainPlayerStamina(repelType: EPlayerRepelType) {
+  // thePlayer.DrainStamina(
+  //   ESAT_LightAttack,
+  //   , // fixed value
+  //   , // fixed delay
+  //   , // ability name
+  //   1, // pause stamina regen duration
+  //   // todo: add cost mult
+  // );
   thePlayer.DrainStamina(
-    ESAT_Counterattack,
-    , // fixed value
-    , // fixed delay
-    , // ability name
-    1, // pause stamina regen duration
-    // todo: add cost mult
+    ESAT_FixedValue,
+    CalculateAttributeValue(thePlayer.GetTarget().GetAttributeValue( 'stamina_damage' ))
   );
 }
 // modCombatSkill - END
