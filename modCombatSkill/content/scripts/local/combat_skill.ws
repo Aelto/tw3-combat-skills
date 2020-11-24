@@ -95,8 +95,26 @@ function performMeleeSkill(repeltype: EPlayerRepelType) {
   //                     || time will force a T-pose to creatures. It looks like
   //                     \/ the game doesn't expect the slash to stagger.
   if (distance < 2 && repeltype != PRT_SideStepSlash) {
-    target.SetBehaviorVariable('repelType', (int)repeltype);
-    target.AddEffectDefault(EET_CounterStrikeHit, thePlayer, "ReflexParryPerformed");
+    // Geralt attempt at kicking or bashing a huge creature.
+    if (target.IsHuge()) {
+      // if Geralt doesn't have the stamina for 2 rolls
+      // he gets staggered instead
+      if (!thePlayer.HasStaminaToUseAction(ESAT_Roll, , , 2)) {
+        thePlayer.SetBehaviorVariable('repelType', (int)repeltype);
+        thePlayer.AddEffectDefault(EET_CounterStrikeHit, thePlayer, "ReflexParryPerformed");
+      }
+
+      // note that this stamina drain is on top of the default stamina cost
+      drainPlayerStaminaAgainstHugeCreature();
+    }
+    else {
+      target.SetBehaviorVariable('repelType', (int)repeltype);
+      target.AddEffectDefault(EET_CounterStrikeHit, thePlayer, "ReflexParryPerformed");
+    }
+  }
+
+  if (repeltype == PRT_SideStepSlash) {
+    geraltSlideAwayFromTarget();
   }
 
   drainPlayerStamina(repeltype);
@@ -181,8 +199,53 @@ function drainPlayerStamina(repelType: EPlayerRepelType) {
     1, // pause stamina regen duration
     // todo: add cost mult
   );
+}
 
+function drainPlayerStaminaAgainstHugeCreature() {
+  thePlayer.DrainStamina(
+    ESAT_Roll,
+    , // fixed value
+    , // fixed delay
+    , // ability name
+    1, // pause stamina regen duration
+    2// todo: add cost mult
+  );
+}
 
-  // thePlayer.DrainStamina(ESAT_FixedValue, thePlayer.GetStat(BCS_Stamina) * 0.5f);
+function geraltSlideAwayFromTarget() {
+  var movementAdjustor: CMovementAdjustor;
+	var slide_ticket: SMovementAdjustmentRequestTicket;
+
+  movementAdjustor = thePlayer
+    .GetMovingAgentComponent()
+    .GetMovementAdjustor();
+
+  slide_ticket = movementAdjustor.GetRequest( 'SidestepAwayFromTarget' );
+
+  // cancel any adjustement made with the same name
+  movementAdjustor.CancelByName( 'SidestepAwayFromTarget' );
+
+  // and now we create a new request
+  slide_ticket = movementAdjustor.CreateNewRequest( 'SidestepAwayFromTarget' );
+
+  movement_adjustor.AdjustmentDuration(
+    slide_ticket,
+    0.25 // 250ms
+  );
+
+  // TODO: there is an interesting method in the movement_adjustor: ScaleAnimation
+  // Maybe we could use it instead of doing hard Rotates and Slides and we  would
+  // scale the sidestep animation
+
+  movement_adjustor.SlideTowards(
+    slide_ticket,
+    thePlayer.GetTarget(),
+    1.5 // min distance of 1.5m between Geralt and the target
+  );
+
+  movement_adjustor.RotateTowards(
+    slide_ticket,
+    thePlayer.GetTarget()
+  );
 }
 // modCombatSkill - END
