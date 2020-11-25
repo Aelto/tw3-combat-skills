@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-16"?>
+<UserConfig>
+  <Group id="MCDgeneral" displayName="Mods.mcd_name">
+    <PresetsArray>
+      <Preset id="0" displayName="mcd_defaults" >
+        <Entry varId="MCDmodEnabled" value="1" />
+
+        <Entry varId="MCDphysicalSkillStaminaCostMultiplier" value="2" />
+        <Entry varId="MCDsidestepSkillStaminaCostMultiplier" value="1" />
+
+        <Entry varId="MCDphysicalSkillStaminaCostType" value="5" />
+        <Entry varId="MCDsidestepSkillStaminaCostType" value="5" />
+
+        <Entry varId="MCDphysicalSkillCanConsumeAdrenaline" value="0" />
+
+        <Entry varId="MCDkickBind" value="0" />
+        <Entry varId="MCDShoulderBind" value="2" />
+        <Entry varId="MCDsidestepBind" value="5" />
+        
+        <Entry varId="MCDmodInitialized" value="1" />
+      </Preset>
+
+      <Preset id="1" displayName="mcd_ghostmode" >
+        <Entry varId="MCDphysicalSkillStaminaCostMultiplier" value="2" />
+        <Entry varId="MCDsidestepSkillStaminaCostMultiplier" value="1" />
+
+        <Entry varId="MCDphysicalSkillStaminaCostType" value="2" />
+        <Entry varId="MCDsidestepSkillStaminaCostType" value="2" />
+      </Preset>
+    </PresetsArray>
+
+    <VisibleVars>
+        <Var id="MCDmodEnabled" displayName="mcd_mod_enabled" displayType="TOGGLE"></Var>
+
+        <Var id="MCDphysicalSkillStaminaCostMultiplier" displayName="mcd_physical_skill_stamina_cost_multiplier" displayType="SLIDER;0;10;10" />
+        <Var id="MCDsidestepSkillStaminaCostMultiplier" displayName="mcd_sidestep_skill_stamina_cost_multiplier" displayType="SLIDER;0;10;10" />
+
+        <Var id="MCDphysicalSkillStaminaCostType" displayName="mcd_physical_skill_stamina_cost_type" displayType="OPTIONS"> 	
+          <OptionsArray>
+            <Option id="0" displayName="mcd_cost_type_none">
+              <Entry varId="MCDphysicalSkillStaminaCostType" value="0"/>
+            </Option>
+            <Option id="1" displayName="mcd_cost_type_light_attack">
+              <Entry varId="MCDphysicalSkillStaminaCostType" value="1"/>
+            </Option>
+            <Option id="2" displayName="mcd_cost_type_heavy_attack">
+              <Entry varId="MCDphysicalSkillStaminaCostType" value="2"/>
+            </Option>
+            <Option id="3" displayName="mcd_cost_type_rend">
+              <Entry varId="MCDphysicalSkillStaminaCostType" value="3"/>
+            </Option>
+            <Option id="4" displayName="mcd_cost_type_dodge">
+              <Entry varId="MCDphysicalSkillStaminaCostType" value="4"/>
+            </Option>
+            <Option id="5" displayName="mcd_cost_type_roll">
+              <Entry varId="MCDphysicalSkillStaminaCostType" value="5"/>
+            </Option>
+          </OptionsArray>
+        </Var>
+
+        <Var id="MCDsidestepSkillStaminaCostType" displayName="mcd_sidestep_skill_stamina_cost_type" displayType="OPTIONS"> 	
+          <OptionsArray>
+            <Option id="0" displayName="mcd_cost_type_none">
+              <Entry varId="MCDsidestepSkillStaminaCostType" value="0"/>
+            </Option>
+            <Option id="1" displayName="mcd_cost_type_light_attack">
+              <Entry varId="MCDsidestepSkillStaminaCostType" value="1"/>
+            </Option>
+            <Option id="2" displayName="mcd_cost_type_heavy_attack">
+              <Entry varId="MCDsidestepSkillStaminaCostType" value="2"/>
+            </Option>
+            <Option id="3" displayName="mcd_cost_type_rend">
+              <Entry varId="MCDsidestepSkillStaminaCostType" value="3"/>
+            </Option>
+            <Option id="4" displayName="mcd_cost_type_dodge">
+              <Entry varId="MCDsidestepSkillStaminaCostType" value="4"/>
+            </Option>
+            <Option id="5" displayName="mcd_cost_type_roll">
+              <Entry varId="MCDsidestepSkillStaminaCostType" value="5"/>
+            </Option>
+          </OptionsArray>
+        </Var>
+
+        <Var id="MCDphysicalSkillCanConsumeAdrenaline" displayName="mcd_physical_skill_can_consume_adrenaline" displayType="TOGGLE" />
+
+        <Var id="MCDkickBind" displayName="mcd_kick_bind" displayType="OPTIONS"> 	
+          <OptionsArray>
+            <Option id="0" displayName="mcd_bind_forward">
+              <Entry varId="MCDkickBind" value="0"/>
+            </Option>
+            <Option id="1" displayName="mcd_bind_left">
+              <Entry varId="MCDkickBind" value="1"/>
+            </Option>
+            <Option id="2" displayName="mcd_bind_backward">
+              <Entry varId="MCDkickBind" value="2"/>
+            </Option>
+            <Option id="3" displayName="mcd_bind_right">
+              <Entry varId="MCDkickBind" value="3"/>
+            </Option>
+            <Option id="4" displayName="mcd_bind_foward_or_backward">
+              <Entry varId="MCDkickBind" value="4"/>
+            </Option>
+            <Option id="5" displayName="mcd_bind_left_or_right">
+              <Entry varId="MCDkickBind" value="5"/>
+            </Option>
+          </OptionsArray>
+        </Var>
+
+        <Var id="MCDShoulderBind" displayName="mcd_shoulder_bind" displayType="OPTIONS"> 	
+          <OptionsArray>
+            <Option id="0" displayName="mcd_bind_forward">
+              <Entry varId="MCDShoulderBind" value="0"/>
+            </Option>
+            <Option id="1" displayName="mcd_bind_left">
+              <Entry varId="MCDShoulderBind" value="1"/>
+            </Option>
+            <Option id="2" displayName="mcd_bind_backward">
+              <Entry varId="MCDShoulderBind" value="2"/>
+            </Option>
+            <Option id="3" displayName="mcd_bind_right">
+              <Entry varId="MCDShoulderBind" value="3"/>
+            </Option>
+            <Option id="4" displayName="mcd_bind_foward_or_backward">
+              <Entry varId="MCDShoulderBind" value="4"/>
+            </Option>
+            <Option id="5" displayName="mcd_bind_left_or_right">
+              <Entry varId="MCDShoulderBind" value="5"/>
+            </Option>
+          </OptionsArray>
+        </Var>
+
+        <Var id="MCDsidestepBind" displayName="mcd_sidestep_bind" displayType="OPTIONS"> 	
+          <OptionsArray>
+            <Option id="0" displayName="mcd_bind_forward">
+              <Entry varId="MCDsidestepBind" value="0"/>
+            </Option>
+            <Option id="1" displayName="mcd_bind_left">
+              <Entry varId="MCDsidestepBind" value="1"/>
+            </Option>
+            <Option id="2" displayName="mcd_bind_backward">
+              <Entry varId="MCDsidestepBind" value="2"/>
+            </Option>
+            <Option id="3" displayName="mcd_bind_right">
+              <Entry varId="MCDsidestepBind" value="3"/>
+            </Option>
+            <Option id="4" displayName="mcd_bind_foward_or_backward">
+              <Entry varId="MCDsidestepBind" value="4"/>
+            </Option>
+            <Option id="5" displayName="mcd_bind_left_or_right">
+              <Entry varId="MCDsidestepBind" value="5"/>
+            </Option>
+          </OptionsArray>
+        </Var>
+        
+        <Var id="MCDmodInitialized" displayName="mcd_mod_initialized" displayType="TOGGLE" />
+    </VisibleVars>
+    </Group>
+
+
+</UserConfig>

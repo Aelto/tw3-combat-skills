@@ -9,39 +9,14 @@
 // everything in this mod starts from `modCombatSkillHandleActions()`
 // if you're looking for the changes made in code, search for this function.
 
-// a struct for the variables to avoid changing too much code in the game scripts
-// this way only one variable is created and it is this struct with many members
-struct modCombatSkill_properties {
-
-  // the cooldown for physical skills: shoulder-bash & kick
-  // the cooldown for such skills is set to 1second.
-  // If you wish to change that, change the 1 below to something else.
-  var physical_skill_cooldown: float;
-  default physical_skill_cooldown = 1; 
-
-  // the cooldown for sidestep skills: sidestep-slash.
-  // the cooldown for suck skills is set to 0.75second.
-  // If you wish to change that, change the 0.75 below to something else.
-  var sidestep_skill_cooldown: float;
-  default sidestep_skill_cooldown = 0.75;
-
-  // the two variables below are used to calculate the cooldown of the skills
-  // everytime the user uses one, the timestamp is stored into this variable.
-  // So that everytime a skill is used, we check the delta between the current
-  // and the last timestamp and if the delta is greater than the cooldown, then
-  // it means the skill is up. If not, it means the skill is still in cooldown
-  // and nothing happens.
-  var last_physical_skill_time: float;
-  var last_sidestep_skill_time: float;
-
-}
-
 // if this function returns true, the current input event is cancelled early
 // Geralt won't parry.
 function modCombatSkillHandleActions(action: SInputAction): bool {
-  // going sideways
-  if (theInput.GetActionValue('GI_AxisLeftX') != 0) {
-    if (canPerformSidestepSkill()) {
+
+
+  // checking for sidesteps
+  if (shouldBindTrigger(mcd_getSidestepBind())) {
+    if (canPerformSidestepSkill() && hasEnoughStamina(PRT_SideStepSlash)) {
       performMeleeSkill(PRT_SideStepSlash);
 
       updateSidestepSkillCooldown();
@@ -51,9 +26,9 @@ function modCombatSkillHandleActions(action: SInputAction): bool {
     }
   }
 
-  // going forward
-  if (theInput.GetActionValue('GI_AxisLeftY') > 0.85) {
-    if (canPerformPhysicalSkill()) {
+  // then for the kick
+  if (shouldBindTrigger(mcd_getKickBind())) {
+    if (canPerformPhysicalSkill() && hasEnoughStamina(PRT_Kick)) {
       performMeleeSkill(PRT_Kick);
 
       updatePhysicalSkillCooldown();
@@ -63,9 +38,9 @@ function modCombatSkillHandleActions(action: SInputAction): bool {
     }
   }
 
-  // going backward
-  if (theInput.GetActionValue('GI_AxisLeftY') < -0.85) {
-    if (canPerformPhysicalSkill()) {
+  // and finally the shoulder bash
+  if (shouldBindTrigger(mcd_getShoulderBind())) {
+    if (canPerformPhysicalSkill() && hasEnoughStamina(PRT_Bash)) {
       performMeleeSkill(PRT_Bash);
 
       updatePhysicalSkillCooldown();
@@ -76,6 +51,17 @@ function modCombatSkillHandleActions(action: SInputAction): bool {
   }
 
   return false;
+}
+
+function shouldBindTrigger(bind: MCD_SkillBind): bool {
+  // NDEBUG(bind);
+
+  return bind == MCD_SkillBind_Forward && theInput.GetActionValue('GI_AxisLeftY') > 0.85
+      || bind == MCD_SkillBind_Left && theInput.GetActionValue('GI_AxisLeftX') < -0.85
+      || bind == MCD_SkillBind_Backward && theInput.GetActionValue('GI_AxisLeftY') < -0.85
+      || bind == MCD_SkillBind_Right && theInput.GetActionValue('GI_AxisLeftX') > 0.85
+      || bind == MCD_SkillBind_ForwardOrBackward && theInput.GetActionValue('GI_AxisLeftY') != 0
+      || bind == MCD_SkillBind_LeftOrRight && theInput.GetActionValue('GI_AxisLeftX') != 0;
 }
 
 function performMeleeSkill(repeltype: EPlayerRepelType) {
@@ -107,7 +93,7 @@ function performMeleeSkill(repeltype: EPlayerRepelType) {
       // Geralt attempt at kicking or bashing a huge creature.
       if (target.IsHuge()) {
         // only stagger the enemy if geralt has the required stamina
-        if (thePlayer.HasStaminaToUseAction(ESAT_Roll, , , 2)) {
+        if (hasEnoughStamina(repeltype, true)) {
           target.SetBehaviorVariable('repelType', (int)repeltype);
           target.AddEffectDefault(EET_CounterStrikeHit, thePlayer, "ReflexParryPerformed");
         }
@@ -121,7 +107,7 @@ function performMeleeSkill(repeltype: EPlayerRepelType) {
         // note that this stamina drain is on top of the default stamina cost
         // and is called no matter the current stamina levels. It means that simply
         // trying to kick a huge creature costs additional stamina
-        drainPlayerStaminaAgainstHugeCreature();
+        drainPlayerStamina(repeltype, true);
       }
       else {
         target.SetBehaviorVariable('repelType', (int)repeltype);
@@ -170,25 +156,96 @@ function updateSidestepSkillCooldown() {
   player_input.mod_combat_skill_properties.last_sidestep_skill_time = theGame.GetEngineTimeAsSeconds();
 }
 
-function drainPlayerStamina(repelType: EPlayerRepelType) {
-  thePlayer.DrainStamina(
-    ESAT_HeavyAttack,
-    , // fixed value
-    , // fixed delay
-    , // ability name
-    1, // pause stamina regen duration
-    // todo: add cost mult
+function staminaCostTypeToActionType(cost_type: MCD_StaminaCostType): EStaminaActionType {
+  if (cost_type == MCD_StaminaCostType_None) {
+    return ESAT_Undefined;
+  }
+  else if (cost_type == MCD_StaminaCostType_LightAttack) {
+    return ESAT_LightAttack;
+  }
+  else if (cost_type == MCD_StaminaCostType_HeavyAttack) {
+    return ESAT_HeavyAttack;
+  }
+  else if (cost_type == MCD_StaminaCostType_Rend) {
+    return ESAT_SuperHeavyAttack;
+  }
+  else if (cost_type == MCD_StaminaCostType_Dodge) {
+    return ESAT_Dodge;
+  }
+  else if (cost_type == MCD_StaminaCostType_Roll) {
+    return ESAT_Roll;
+  }
+
+  return ESAT_Undefined;
+}
+
+function hasEnoughStamina(repelType: EPlayerRepelType, optional is_huge: bool): bool {
+  var cost: EStaminaActionType;
+  var multiplier: float;
+
+  if (repelType == PRT_Kick || repelType == PRT_Bash) {
+    cost = staminaCostTypeToActionType(
+      mcd_getPhysicalSKillStaminaCostType()
+    );
+
+    multiplier = mcd_getPhysicalSKillStaminaCostMultiplier();
+  }
+  else {
+    cost = staminaCostTypeToActionType(
+      mcd_getSidestepSKillStaminaCostType()
+    );
+
+    multiplier = mcd_getSidestepSKillStaminaCostMultiplier();
+  }
+
+  if (multiplier <= 0 || cost == ESAT_Undefined) {
+    return true;
+  }
+
+  if (is_huge) {
+    multiplier *= 2;
+  }
+
+  return thePlayer.HasStaminaToUseAction(
+    cost,,,
+    multiplier
   );
 }
 
-function drainPlayerStaminaAgainstHugeCreature() {
+function drainPlayerStamina(repelType: EPlayerRepelType, optional is_huge: bool) {
+  var cost: EStaminaActionType;
+  var multiplier: float;
+
+  if (repelType == PRT_Kick || repelType == PRT_Bash) {
+    cost = staminaCostTypeToActionType(
+      mcd_getPhysicalSKillStaminaCostType()
+    );
+
+    multiplier = mcd_getPhysicalSKillStaminaCostMultiplier();
+  }
+  else {
+    cost = staminaCostTypeToActionType(
+      mcd_getSidestepSKillStaminaCostType()
+    );
+
+    multiplier = mcd_getSidestepSKillStaminaCostMultiplier();
+  }
+
+  if (multiplier <= 0 || cost == ESAT_Undefined) {
+    return;
+  }
+
+  if (is_huge) {
+    multiplier *= 2;
+  }
+
   thePlayer.DrainStamina(
-    ESAT_Roll,
+    cost,
     , // fixed value
     , // fixed delay
     , // ability name
     1, // pause stamina regen duration
-    2// todo: add cost mult
+    multiplier
   );
 }
 
