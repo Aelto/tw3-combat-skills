@@ -179,7 +179,7 @@ function canPerformSidestepSkill(): bool {
   props = thePlayer.GetInputHandler()
     .mod_combat_skill_properties;
 
-  return theGame.GetEngineTimeAsSeconds() - props.sidestep_skill_cooldown > props.sidestep_skill_cooldown;
+  return theGame.GetEngineTimeAsSeconds() - props.last_sidestep_skill_time > props.sidestep_skill_cooldown;
 }
 
 function updateSidestepSkillCooldown() {
