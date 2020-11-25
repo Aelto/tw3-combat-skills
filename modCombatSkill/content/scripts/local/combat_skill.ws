@@ -37,8 +37,20 @@ struct modCombatSkill_properties {
 }
 
 // if this function returns true, the current input event is cancelled early
-// Geralt won't parry,
+// Geralt won't parry.
 function modCombatSkillHandleActions(action: SInputAction): bool {
+  // going sideways
+  if (theInput.GetActionValue('GI_AxisLeftX') != 0) {
+    if (canPerformSidestepSkill()) {
+      performMeleeSkill(PRT_SideStepSlash);
+
+      updateSidestepSkillCooldown();
+      
+      // early return to cancel the parry action
+      return true;
+    }
+  }
+
   // going forward
   if (theInput.GetActionValue('GI_AxisLeftY') > 0.85) {
     if (canPerformPhysicalSkill()) {
@@ -57,18 +69,6 @@ function modCombatSkillHandleActions(action: SInputAction): bool {
       performMeleeSkill(PRT_Bash);
 
       updatePhysicalSkillCooldown();
-      
-      // early return to cancel the parry action
-      return true;
-    }
-  }
-
-  // going sideways
-  if (theInput.GetActionValue('GI_AxisLeftX') != 0) {
-    if (canPerformSidestepSkill()) {
-      performMeleeSkill(PRT_SideStepSlash);
-
-      updateSidestepSkillCooldown();
       
       // early return to cancel the parry action
       return true;
