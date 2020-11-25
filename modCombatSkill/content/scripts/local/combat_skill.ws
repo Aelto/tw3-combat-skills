@@ -192,7 +192,7 @@ function updateSidestepSkillCooldown() {
 
 function drainPlayerStamina(repelType: EPlayerRepelType) {
   thePlayer.DrainStamina(
-    ESAT_LightAttack,
+    ESAT_HeavyAttack,
     , // fixed value
     , // fixed delay
     , // ability name
