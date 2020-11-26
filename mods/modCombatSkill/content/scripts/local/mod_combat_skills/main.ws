@@ -83,7 +83,7 @@ function performMeleeSkill(repeltype: EPlayerRepelType) {
     thePlayer.UpdateCustomRotationHeading('MeleeSkill', VecHeading(target.GetWorldPosition() - thePlayer.GetWorldPosition()));
     thePlayer.SetCustomRotation('MeleeSkill', VecHeading(target.GetWorldPosition() - thePlayer.GetWorldPosition()), 0.f, 0.2f, false);
 
-    if (distance < 2.25) {
+    if (distance < 3) {
       // if Geralt is further than two meters
       if (distance > 2) {
         // slide him closer so the kick hits
