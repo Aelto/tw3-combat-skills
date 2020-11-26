@@ -5,7 +5,7 @@
       <Preset id="0" displayName="mcd_defaults" >
         <Entry varId="MCDmodEnabled" value="1" />
 
-        <Entry varId="MCDphysicalSkillStaminaCostMultiplier" value="2" />
+        <Entry varId="MCDphysicalSkillStaminaCostMultiplier" value="3" />
         <Entry varId="MCDsidestepSkillStaminaCostMultiplier" value="1" />
 
         <Entry varId="MCDphysicalSkillStaminaCostType" value="5" />
