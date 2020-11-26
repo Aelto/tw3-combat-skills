@@ -24,7 +24,14 @@ struct modCombatSkill_properties {
   var last_physical_skill_time: float;
   var last_sidestep_skill_time: float;
 
+  var manager: MCD_Manager;
+  
+  var manager_instantiated: bool;
+  default manager_instantiated = false;
+
 }
+
+
 
 enum MCD_StaminaCostType {
   MCD_StaminaCostType_None = 0,

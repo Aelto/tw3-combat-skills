@@ -55,6 +55,22 @@ function mcd_getPhysicalSkillCanMiss(): bool {
     .GetVarValue('MCDgeneral', 'MCDphysicalSkillCanMiss');
 }
 
+function mcd_getSidestepInvulnerabilityStart(): float {
+  return StringToFloat(
+    theGame
+    .GetInGameConfigWrapper()
+    .GetVarValue('MCDgeneral', 'MCDsidestepInvulnerabilityStart')
+  ) / 1000;
+}
+
+function mcd_getSidestepInvulnerabilityDuration(): float {
+  return StringToFloat(
+    theGame
+    .GetInGameConfigWrapper()
+    .GetVarValue('MCDgeneral', 'MCDsidestepInvulnerabilityDuration')
+  ) / 1000;
+}
+
 function mcd_getKickBind(): MCD_SkillBind {
   return StringToInt(
     theGame

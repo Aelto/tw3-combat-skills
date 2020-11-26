@@ -13,6 +13,7 @@
 // Geralt won't parry.
 function modCombatSkillHandleActions(action: SInputAction): bool {
 
+  tryInstantiateCombatSkillManager();
 
   // checking for sidesteps
   if (shouldBindTrigger(mcd_getSidestepBind())) {
@@ -54,8 +55,6 @@ function modCombatSkillHandleActions(action: SInputAction): bool {
 }
 
 function shouldBindTrigger(bind: MCD_SkillBind): bool {
-  // NDEBUG(bind);
-
   return bind == MCD_SkillBind_Forward && theInput.GetActionValue('GI_AxisLeftY') > 0.85
       || bind == MCD_SkillBind_Left && theInput.GetActionValue('GI_AxisLeftX') < -0.85
       || bind == MCD_SkillBind_Backward && theInput.GetActionValue('GI_AxisLeftY') < -0.85
@@ -74,9 +73,10 @@ function performMeleeSkill(repeltype: EPlayerRepelType) {
   target = thePlayer.GetTarget();
   distance = VecDistance(target.GetWorldPosition(), thePlayer.GetWorldPosition());
 
-
   if (repeltype == PRT_SideStepSlash) {
     geraltSlideAwayFromNearbyTargets(2);
+
+    MCD_managerGoToStateSidestep();
   }
   else {
     if (distance < 3) {
@@ -163,6 +163,16 @@ function updateSidestepSkillCooldown() {
   player_input = thePlayer.GetInputHandler();
 
   player_input.mod_combat_skill_properties.last_sidestep_skill_time = theGame.GetEngineTimeAsSeconds();
+}
+
+function tryInstantiateCombatSkillManager() {
+  var player_input: CPlayerInput;
+
+  player_input = thePlayer.GetInputHandler();
+
+  if (!player_input.mod_combat_skill_properties.manager_instantiated) {
+    player_input.mod_combat_skill_properties.manager = new MCD_Manager in player_input;
+  }
 }
 
 function staminaCostTypeToActionType(cost_type: MCD_StaminaCostType): EStaminaActionType {
@@ -311,6 +321,15 @@ function geraltSlideAwayFromNearbyTargets(radius: float) {
       entities[i],
       1.5 // min distance of 1m between Geralt and the target
     );
+
+    // movement_adjustor.SlideTo(
+    //   slide_ticket,
+    //   VecInterpolate(
+    //     thePlayer.GetWorldPosition(),
+    //     mean_vector,
+    //     0.1
+    //   )
+    // );
 
     movement_adjustor.RotateTowards(
       slide_ticket,

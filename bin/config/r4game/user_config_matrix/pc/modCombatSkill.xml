@@ -13,6 +13,9 @@
 
         <Entry varId="MCDphysicalSkillCanConsumeAdrenaline" value="0" />
 
+        <Entry varId="MCDsidestepInvulnerabilityStart" value="0" />
+        <Entry varId="MCDsidestepInvulnerabilityDuration" value="150" />
+
         <Entry varId="MCDkickBind" value="0" />
         <Entry varId="MCDshoulderBind" value="2" />
         <Entry varId="MCDsidestepBind" value="5" />
@@ -84,6 +87,10 @@
         <Var id="MCDphysicalSkillCanConsumeAdrenaline" displayName="mcd_physical_skill_can_consume_adrenaline" displayType="TOGGLE" />
 
         <Var id="MCDphysicalSkillCanMiss" displayName="mcd_physical_skill_can_miss" displayType="TOGGLE" />
+
+        <Var id="MCDsidestepInvulnerabilityStart" displayName="mcd_sidestep_invulnerability_start" displayType="SLIDER;0;500;500" />
+
+        <Var id="MCDsidestepInvulnerabilityDuration" displayName="mcd_sidestep_invulnerability_duration" displayType="SLIDER;0;500;500" />
 
         <Var id="MCDkickBind" displayName="mcd_kick_bind" displayType="OPTIONS"> 	
           <OptionsArray>

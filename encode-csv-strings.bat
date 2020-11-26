@@ -4,7 +4,7 @@
 call variables.cmd
 
 @echo off
-cd modCombatSkill\content
+cd mods\modCombatSkill\content
 
 del *.w3strings
 %modkitpath%\w3strings --encode en.w3strings.csv --id-space 5312
@@ -12,4 +12,4 @@ del *.w3strings
 del *.ws
 rename en.w3strings.csv.w3strings en.w3strings
 
-cd ../../
+cd ../../../
