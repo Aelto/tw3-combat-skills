@@ -74,15 +74,11 @@ function performMeleeSkill(repeltype: EPlayerRepelType) {
   target = thePlayer.GetTarget();
   distance = VecDistance(target.GetWorldPosition(), thePlayer.GetWorldPosition());
 
-  thePlayer.SetBehaviorVariable('repelType', (int)repeltype);
 
   if (repeltype == PRT_SideStepSlash) {
     geraltSlideAwayFromNearbyTargets(2);
   }
   else {
-    thePlayer.UpdateCustomRotationHeading('MeleeSkill', VecHeading(target.GetWorldPosition() - thePlayer.GetWorldPosition()));
-    thePlayer.SetCustomRotation('MeleeSkill', VecHeading(target.GetWorldPosition() - thePlayer.GetWorldPosition()), 0.f, 0.2f, false);
-
     if (distance < 3) {
       // if Geralt is further than two meters
       if (distance > 2) {
@@ -111,13 +107,26 @@ function performMeleeSkill(repeltype: EPlayerRepelType) {
       }
       else {
         target.SetBehaviorVariable('repelType', (int)repeltype);
-        target.AddEffectDefault(EET_CounterStrikeHit, thePlayer, "ReflexParryPerformed");
+        
+        if (!target.HasBuff(EET_Knockdown) && !target.HasBuff(EET_HeavyKnockdown)) {
+          target.AddEffectDefault(EET_CounterStrikeHit, thePlayer, "ReflexParryPerformed");
+        }
       }
     }
+    // out of range and the user doesn't allow the skills to miss.
+    // So we leave early and do nothing
+    else if (!mcd_getPhysicalSkillCanMiss()) {
+			theSound.SoundEvent("gui_global_denied");
+
+      return;
+    }
+
+    thePlayer.UpdateCustomRotationHeading('MeleeSkill', VecHeading(target.GetWorldPosition() - thePlayer.GetWorldPosition()));
+    thePlayer.SetCustomRotation('MeleeSkill', VecHeading(target.GetWorldPosition() - thePlayer.GetWorldPosition()), 0.f, 0.2f, false);
   }
 
   drainPlayerStamina(repeltype);
-
+  thePlayer.SetBehaviorVariable('repelType', (int)repeltype);
   thePlayer.RaiseForceEvent('PerformCounter');
   thePlayer.OnCombatActionStart();
 }

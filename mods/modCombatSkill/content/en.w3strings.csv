@@ -28,3 +28,4 @@
 2115312026|        |option_mcd_physical_skill_stamina_cost_type|Physical skills stamina cost type
 2115312027|        |option_mcd_sidestep_skill_stamina_cost_type|Sidestep skills stamina cost type
 2115312028|        |preset_value_mcd_ghostmode|Overhaul
+2115312029|        |option_mcd_physical_skill_can_miss|Physical skills can miss (no range check)

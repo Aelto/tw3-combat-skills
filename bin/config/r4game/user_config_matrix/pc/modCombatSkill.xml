@@ -83,6 +83,8 @@
 
         <Var id="MCDphysicalSkillCanConsumeAdrenaline" displayName="mcd_physical_skill_can_consume_adrenaline" displayType="TOGGLE" />
 
+        <Var id="MCDphysicalSkillCanMiss" displayName="mcd_physical_skill_can_miss" displayType="TOGGLE" />
+
         <Var id="MCDkickBind" displayName="mcd_kick_bind" displayType="OPTIONS"> 	
           <OptionsArray>
             <Option id="0" displayName="mcd_bind_forward">

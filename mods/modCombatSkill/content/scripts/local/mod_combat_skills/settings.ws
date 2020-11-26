@@ -49,6 +49,12 @@ function mcd_getPhysicalSkillCanConsumeAdrenaline(): bool {
     .GetVarValue('MCDgeneral', 'MCDphysicalSkillCanConsumeAdrenaline');
 }
 
+function mcd_getPhysicalSkillCanMiss(): bool {
+  return theGame
+    .GetInGameConfigWrapper()
+    .GetVarValue('MCDgeneral', 'MCDphysicalSkillCanMiss');
+}
+
 function mcd_getKickBind(): MCD_SkillBind {
   return StringToInt(
     theGame
