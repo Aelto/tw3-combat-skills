@@ -1,5 +1,5 @@
 call variables.cmd
-call bundle.batcall encode-csv-strings.bat
+call encode-csv-strings.bat
 
 rmdir "%modpath%\release" /s /q
 mkdir "%modpath%\release"
