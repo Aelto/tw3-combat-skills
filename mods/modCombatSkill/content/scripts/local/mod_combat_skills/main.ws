@@ -322,6 +322,12 @@ function geraltSlideAwayFromNearbyTargets(radius: float) {
       1.5 // min distance of 1m between Geralt and the target
     );
 
+    movement_adjustor.MaxLocationAdjustmentDistance(
+      slide_ticket,
+      , // speed
+      1, // max distance on x and y
+    )
+
     // movement_adjustor.SlideTo(
     //   slide_ticket,
     //   VecInterpolate(
