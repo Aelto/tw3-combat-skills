@@ -10,10 +10,10 @@ struct modCombatSkill_properties {
   default physical_skill_cooldown = 1; 
 
   // the cooldown for sidestep skills: sidestep-slash.
-  // the cooldown for suck skills is set to 0.75second.
-  // If you wish to change that, change the 0.75 below to something else.
+  // the cooldown for suck skills is set to 1second.
+  // If you wish to change that, change the 1 below to something else.
   var sidestep_skill_cooldown: float;
-  default sidestep_skill_cooldown = 0.75;
+  default sidestep_skill_cooldown = 1;
 
   // the two variables below are used to calculate the cooldown of the skills
   // everytime the user uses one, the timestamp is stored into this variable.

@@ -6,7 +6,7 @@
         <Entry varId="MCDmodEnabled" value="1" />
 
         <Entry varId="MCDphysicalSkillStaminaCostMultiplier" value="3" />
-        <Entry varId="MCDsidestepSkillStaminaCostMultiplier" value="1" />
+        <Entry varId="MCDsidestepSkillStaminaCostMultiplier" value="1.5" />
 
         <Entry varId="MCDphysicalSkillStaminaCostType" value="5" />
         <Entry varId="MCDsidestepSkillStaminaCostType" value="5" />
@@ -25,7 +25,7 @@
 
       <Preset id="1" displayName="mcd_ghostmode" >
         <Entry varId="MCDphysicalSkillStaminaCostMultiplier" value="3" />
-        <Entry varId="MCDsidestepSkillStaminaCostMultiplier" value="1" />
+        <Entry varId="MCDsidestepSkillStaminaCostMultiplier" value="1.5" />
 
         <Entry varId="MCDphysicalSkillStaminaCostType" value="2" />
         <Entry varId="MCDsidestepSkillStaminaCostType" value="2" />
