@@ -35,8 +35,8 @@
     <VisibleVars>
         <Var id="MCDmodEnabled" displayName="mcd_mod_enabled" displayType="TOGGLE"></Var>
 
-        <Var id="MCDphysicalSkillStaminaCostMultiplier" displayName="mcd_physical_skill_stamina_cost_multiplier" displayType="SLIDER;0;10;10" />
-        <Var id="MCDsidestepSkillStaminaCostMultiplier" displayName="mcd_sidestep_skill_stamina_cost_multiplier" displayType="SLIDER;0;10;10" />
+        <Var id="MCDphysicalSkillStaminaCostMultiplier" displayName="mcd_physical_skill_stamina_cost_multiplier" displayType="SLIDER;0;10;20" />
+        <Var id="MCDsidestepSkillStaminaCostMultiplier" displayName="mcd_sidestep_skill_stamina_cost_multiplier" displayType="SLIDER;0;10;20" />
 
         <Var id="MCDphysicalSkillStaminaCostType" displayName="mcd_physical_skill_stamina_cost_type" displayType="OPTIONS"> 	
           <OptionsArray>
