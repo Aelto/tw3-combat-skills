@@ -97,7 +97,7 @@ state Sidestep in MCD_Manager extends SkillBase {
 
     movement_adjustor.AdjustmentDuration(
       slide_ticket,
-      0.25 // 250ms
+      0.10 // 250ms
     );
 
     for (i = 0; i < entities.Size(); i += 1) {
