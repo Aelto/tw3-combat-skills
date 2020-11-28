@@ -33,11 +33,11 @@ state Kick in MCD_Manager extends SkillBase {
   latent function Kick_playGeraltAnimation() {
     if (RandRange(10) < 5) {
 		  thePlayer
-        .ActionPlaySlotAnimationAsync('PLAYER_SLOT','man_geralt_sword_repel_rp_kick', 0, 0, false);
+        .ActionPlaySlotAnimationAsync('PLAYER_SLOT','man_geralt_sword_repel_rp_kick', 0, 1, false);
     }
     else {
 		  thePlayer
-        .ActionPlaySlotAnimationAsync('PLAYER_SLOT','man_geralt_sword_repel_lp_kick', 0, 0, false);
+        .ActionPlaySlotAnimationAsync('PLAYER_SLOT','man_geralt_sword_repel_lp_kick', 0, 1, false);
     }
   }
 

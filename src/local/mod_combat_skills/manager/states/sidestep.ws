@@ -22,22 +22,22 @@ state Sidestep in MCD_Manager extends SkillBase {
     if (theInput.GetActionValue('GI_AxisLeftX') > 0) {
       if (RandRange(10) < 5) {
         thePlayer
-        .ActionPlaySlotAnimationAsync('PLAYER_SLOT','man_geralt_sword_sidestep_counter_left_lp', 0, 0, false);
+        .ActionPlaySlotAnimationAsync('PLAYER_SLOT','man_geralt_sword_sidestep_counter_left_lp', 0, 1, false);
       }
       else {
         thePlayer
-        .ActionPlaySlotAnimationAsync('PLAYER_SLOT','man_geralt_sword_sidestep_counter_left_rp', 0, 0, false);
+        .ActionPlaySlotAnimationAsync('PLAYER_SLOT','man_geralt_sword_sidestep_counter_left_rp', 0, 1, false);
       }
     }
     // going right
     else {
       if (RandRange(10) < 5) {
         thePlayer
-        .ActionPlaySlotAnimationAsync('PLAYER_SLOT','man_geralt_sword_sidestep_counter_right_lp', 0, 0, false);
+        .ActionPlaySlotAnimationAsync('PLAYER_SLOT','man_geralt_sword_sidestep_counter_right_lp', 0, 1, false);
       }
       else {
         thePlayer
-        .ActionPlaySlotAnimationAsync('PLAYER_SLOT','man_geralt_sword_sidestep_counter_right_rp', 0, 0, false);
+        .ActionPlaySlotAnimationAsync('PLAYER_SLOT','man_geralt_sword_sidestep_counter_right_rp', 0, 1, false);
       }
     }
   }
