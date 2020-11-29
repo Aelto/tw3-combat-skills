@@ -24,7 +24,7 @@
       </Preset>
 
       <Preset id="1" displayName="mcd_ghostmode" >
-        <Entry varId="MCDphysicalSkillStaminaCostMultiplier" value="3" />
+        <Entry varId="MCDphysicalSkillStaminaCostMultiplier" value="2.5" />
         <Entry varId="MCDsidestepSkillStaminaCostMultiplier" value="1.5" />
 
         <Entry varId="MCDphysicalSkillStaminaCostType" value="2" />
