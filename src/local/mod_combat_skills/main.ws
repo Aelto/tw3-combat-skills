@@ -19,10 +19,8 @@ function modCombatSkillHandleActions(action: SInputAction): bool {
   // checking for sidesteps
   if (shouldBindTrigger(mcd_getSidestepBind())) {
     if (canPerformSidestepSkill() && hasEnoughStamina(PRT_SideStepSlash)) {
-      MCD_managerGoToStateSidestep();
-      // performMeleeSkill(PRT_SideStepSlash);
-
       updateSidestepSkillCooldown();
+      MCD_managerGoToStateSidestep();
       
       // early return to cancel the parry action
       return true;
@@ -32,10 +30,8 @@ function modCombatSkillHandleActions(action: SInputAction): bool {
   // then for the kick
   if (shouldBindTrigger(mcd_getKickBind())) {
     if (canPerformPhysicalSkill() && hasEnoughStamina(PRT_Kick)) {
-      MCD_managerGoToStateKick();
-      // performMeleeSkill(PRT_Kick);
-
       updatePhysicalSkillCooldown();
+      MCD_managerGoToStateKick();
       
       // early return to cancel the parry action
       return true;
@@ -45,10 +41,8 @@ function modCombatSkillHandleActions(action: SInputAction): bool {
   // and finally the shoulder bash
   if (shouldBindTrigger(mcd_getShoulderBind())) {
     if (canPerformPhysicalSkill() && hasEnoughStamina(PRT_Bash)) {
-      MCD_managerGoToStateBash();
-      // performMeleeSkill(PRT_Bash);
-
       updatePhysicalSkillCooldown();
+      MCD_managerGoToStateBash();
       
       // early return to cancel the parry action
       return true;
@@ -82,6 +76,14 @@ function updatePhysicalSkillCooldown() {
   player_input = thePlayer.GetInputHandler();
 
   player_input.mod_combat_skill_properties.last_physical_skill_time = theGame.GetEngineTimeAsSeconds();
+}
+
+function resetPhysicalSkillCooldown() {
+  var player_input: CPlayerInput;
+
+  player_input = thePlayer.GetInputHandler();
+
+  player_input.mod_combat_skill_properties.last_physical_skill_time = 0;
 }
 
 function canPerformSidestepSkill(): bool {

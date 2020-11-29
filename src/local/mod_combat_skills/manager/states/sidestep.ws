@@ -6,6 +6,8 @@ state Sidestep in MCD_Manager extends SkillBase {
   event OnEnterState(previous_state_name: name) {
     super.OnEnterState(previous_state_name);
 
+    LogChannel('MCS', "SIDESTEP");
+
     this.Sidestep_start();
     parent.GotoState('Waiting');
   }
@@ -22,22 +24,22 @@ state Sidestep in MCD_Manager extends SkillBase {
     if (theInput.GetActionValue('GI_AxisLeftX') > 0) {
       if (RandRange(10) < 5) {
         thePlayer
-        .ActionPlaySlotAnimationAsync('PLAYER_SLOT','man_geralt_sword_sidestep_counter_left_lp', 0, 1, false);
+        .ActionPlaySlotAnimationAsync('PLAYER_SLOT','man_geralt_sword_sidestep_counter_left_lp', 0.1, 1, false);
       }
       else {
         thePlayer
-        .ActionPlaySlotAnimationAsync('PLAYER_SLOT','man_geralt_sword_sidestep_counter_left_rp', 0, 1, false);
+        .ActionPlaySlotAnimationAsync('PLAYER_SLOT','man_geralt_sword_sidestep_counter_left_rp', 0.1, 1, false);
       }
     }
     // going right
     else {
       if (RandRange(10) < 5) {
         thePlayer
-        .ActionPlaySlotAnimationAsync('PLAYER_SLOT','man_geralt_sword_sidestep_counter_right_lp', 0, 1, false);
+        .ActionPlaySlotAnimationAsync('PLAYER_SLOT','man_geralt_sword_sidestep_counter_right_lp', 0.1, 1, false);
       }
       else {
         thePlayer
-        .ActionPlaySlotAnimationAsync('PLAYER_SLOT','man_geralt_sword_sidestep_counter_right_rp', 0, 1, false);
+        .ActionPlaySlotAnimationAsync('PLAYER_SLOT','man_geralt_sword_sidestep_counter_right_rp', 0.1, 1, false);
       }
     }
   }
@@ -70,18 +72,11 @@ state Sidestep in MCD_Manager extends SkillBase {
     FindGameplayEntitiesInRange(
       entities,
       thePlayer,
-      1,
+      2,
       3,
       ,
       FLAG_ExcludePlayer + FLAG_OnlyAliveActors + FLAG_Attitude_Hostile
     );
-
-    for (i = 0; i < entities.Size(); i += 1) {
-      mean_vector += entities[i].GetWorldPosition();
-    }
-
-    mean_vector /= entities.Size();
-
 
     movement_adjustor = thePlayer
       .GetMovingAgentComponent()
@@ -97,7 +92,7 @@ state Sidestep in MCD_Manager extends SkillBase {
 
     movement_adjustor.AdjustmentDuration(
       slide_ticket,
-      0.10 // 250ms
+      0.25 // 250ms
     );
 
     for (i = 0; i < entities.Size(); i += 1) {
@@ -116,7 +111,7 @@ state Sidestep in MCD_Manager extends SkillBase {
     movement_adjustor.MaxLocationAdjustmentDistance(
       slide_ticket,
       , // speed
-      1, // max distance on x and y
+      0.5, // max distance on x and y
     );
   }
 
