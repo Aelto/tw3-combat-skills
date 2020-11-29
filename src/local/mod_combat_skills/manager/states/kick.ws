@@ -83,7 +83,7 @@ state Kick in MCD_Manager extends SkillBase {
       // note that this stamina drain is on top of the default stamina cost
       // and is called no matter the current stamina levels. It means that simply
       // trying to kick a huge creature costs additional stamina
-      this.drainPlayerStamina(true);
+      this.drainPlayerStamina();
     }
     else {
       target.SetBehaviorVariable('repelType', (int)this.repel_type);
