@@ -59,6 +59,7 @@ state Kick in MCD_Manager extends SkillBase {
 
   function tryStaggerTarget() {
     var target: CActor;
+    var null_effect_creator: CGameplayEntity;
 
     target = thePlayer.GetTarget();
 
@@ -69,7 +70,7 @@ state Kick in MCD_Manager extends SkillBase {
         target.SetBehaviorVariable('repelType', (int)this.repel_type);
 
         if (!target.HasBuff(EET_Knockdown) && !target.HasBuff(EET_HeavyKnockdown) && !target.HasBuff(EET_CounterStrikeHit)) {
-          target.AddEffectDefault(EET_CounterStrikeHit, thePlayer, "ReflexParryPerformed");
+          target.AddEffectDefault(EET_Stagger, null_effect_creator, "ReflexParryPerformed");
         }
       }
       // if Geralt doesn't have the stamina for 2 rolls
@@ -88,7 +89,7 @@ state Kick in MCD_Manager extends SkillBase {
       target.SetBehaviorVariable('repelType', (int)this.repel_type);
       
       if (!target.HasBuff(EET_Knockdown) && !target.HasBuff(EET_HeavyKnockdown) && !target.HasBuff(EET_CounterStrikeHit)) {
-        target.AddEffectDefault(EET_CounterStrikeHit, thePlayer, "ReflexParryPerformed");
+        target.AddEffectDefault(EET_Stagger, null_effect_creator, "ReflexParryPerformed");
       }
     }
   }
