@@ -29,6 +29,8 @@
 
         <Entry varId="MCDphysicalSkillStaminaCostType" value="2" />
         <Entry varId="MCDsidestepSkillStaminaCostType" value="2" />
+
+        <Entry varId="MCDmodInitialized" value="1" />
       </Preset>
     </PresetsArray>
 

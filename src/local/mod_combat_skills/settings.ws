@@ -11,6 +11,14 @@ function mcd_isInitialized(): bool {
     .GetVarValue('MCDgeneral', 'MCDmodInitialized');
 }
 
+function mcd_initializeSettings() {
+  theGame
+    .GetInGameConfigWrapper()
+    .ApplyGroupPreset('MCDgeneral', 0);
+
+  theGame.SaveUserSettings();
+}
+
 function mcd_getPhysicalSKillStaminaCostMultiplier(): float {
   return StringToFloat(
     theGame

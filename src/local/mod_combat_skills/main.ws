@@ -113,6 +113,11 @@ function tryInstantiateCombatSkillManager() {
 
   if (!player_input.mod_combat_skill_properties.manager_instantiated) {
     player_input.mod_combat_skill_properties.manager = new MCD_Manager in player_input;
+
+    if (!mcd_isInitialized()) {
+      mcd_initializeSettings();
+      displayModCombatSkillsInitializedNotification();
+    }
   }
 }
 

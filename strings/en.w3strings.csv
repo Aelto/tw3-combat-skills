@@ -31,3 +31,4 @@
 2115312029|        |option_mcd_physical_skill_can_miss|Physical skills can miss (no range check)
 2115312030|        |option_mcd_sidestep_invulnerability_start|Sidestep - Invulnerability start (milliseconds)
 2115312031|        |option_mcd_sidestep_invulnerability_duration|Sidestep - Invulnerability duration (milliseconds)
+2115312032|        |option_combatskills_initialized|<font color="#30a14e">Combat Skills</font> initialized
