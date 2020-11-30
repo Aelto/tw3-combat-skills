@@ -1,34 +1,34 @@
 ;meta[language=en]
 ; id      |key(hex)|key(str)| text
-2115312001|        |panel_mcd_name|Combat Skills
+2115312001|        |panel_mcd_name|<font size="49">Combat Skills</font>
 2115312002|        |panel_combat_mcd_name|Combat Skills
 2115312003|        |preset_Mods_mcd_name|Combat Skills
 2115312004|        |preset_Mods_combat_mcd_name|Combat Skills
 2115312005|        |preset_value_mcd_defaults|Defaults
-2115312006|        |option_mcd_mod_enabled|Mod enabled
-2115312007|        |option_mcd_physical_skill_stamina_cost_multiplier|Physical skills stamina cost multiplier
-2115312008|        |option_mcd_sidestep_skill_stamina_cost_multiplier|Sidestep skills stamina cost multiplier
+2115312006|        |option_mcd_mod_enabled|<font color="#30a14e">Mod enabled</font>
+2115312007|        |option_mcd_physical_skill_stamina_cost_multiplier|<font color="#ffd33d">                       :</font> Stamina cost multiplier
+2115312008|        |option_mcd_sidestep_skill_stamina_cost_multiplier|<font color="#8a63d2">                       :</font> Stamina cost multiplier
 2115312009|        |option_mcd_physical_skill_can_consume_adrenaline|Physical skills can consume adrenaline (finishers)
-2115312010|        |option_mcd_mod_initialized|Mod initialized (CAUTION)
+2115312010|        |option_mcd_mod_initialized|Mod initialized <font color="#ea4a5a">(CAUTION)</font>
 2115312011|        |preset_value_mcd_bind_forward|Forward (W)
 2115312012|        |preset_value_mcd_bind_left|Left (A)
 2115312013|        |preset_value_mcd_bind_backward|Backward (S)
 2115312014|        |preset_value_mcd_bind_right|Right (D)
 2115312015|        |preset_value_mcd_bind_foward_or_backward|Forward or Backward (W or S)
 2115312016|        |preset_value_mcd_bind_left_or_right|Left or Right (A or D)
-2115312017|        |option_mcd_kick_bind|Binding - Kick ability
-2115312018|        |option_mcd_shoulder_bind|Binding - Shoulder bash ability
-2115312019|        |option_mcd_sidestep_bind|Binding - Sidestep ability
+2115312017|        |option_mcd_kick_bind|<font color="#ffd33d">                       :</font> Kick binding
+2115312018|        |option_mcd_shoulder_bind|<font color="#ffd33d">Physical skill :</font> Shoulder bash binding
+2115312019|        |option_mcd_sidestep_bind|<font color="#8a63d2">Sidestep skill :</font> Sidestep binding
 2115312020|        |preset_value_mcd_cost_type_none|None
 2115312021|        |preset_value_mcd_cost_type_light_attack|Light attack
 2115312022|        |preset_value_mcd_cost_type_heavy_attack|Heavy attack
 2115312023|        |preset_value_mcd_cost_type_rend|Rend
 2115312024|        |preset_value_mcd_cost_type_dodge|Dodge
 2115312025|        |preset_value_mcd_cost_type_roll|Roll
-2115312026|        |option_mcd_physical_skill_stamina_cost_type|Physical skills stamina cost type
-2115312027|        |option_mcd_sidestep_skill_stamina_cost_type|Sidestep skills stamina cost type
+2115312026|        |option_mcd_physical_skill_stamina_cost_type|<font color="#ffd33d">                       :</font> Stamina cost type
+2115312027|        |option_mcd_sidestep_skill_stamina_cost_type|<font color="#8a63d2">                       :</font> Stamina cost type
 2115312028|        |preset_value_mcd_ghostmode|Overhaul
-2115312029|        |option_mcd_physical_skill_can_miss|Physical skills can miss (no range check)
-2115312030|        |option_mcd_sidestep_invulnerability_start|Sidestep - Invulnerability start (milliseconds)
-2115312031|        |option_mcd_sidestep_invulnerability_duration|Sidestep - Invulnerability duration (milliseconds)
+2115312029|        |option_mcd_physical_skill_can_miss|<font color="#ffd33d">                       :</font> Can miss (no range check)
+2115312030|        |option_mcd_sidestep_invulnerability_start|<font color="#8a63d2">                       :</font> Invulnerability start (milliseconds)
+2115312031|        |option_mcd_sidestep_invulnerability_duration|<font color="#8a63d2">                       :</font> Invulnerability duration (milliseconds)
 2115312032|        |option_combatskills_initialized|<font color="#30a14e">Combat Skills</font> initialized
