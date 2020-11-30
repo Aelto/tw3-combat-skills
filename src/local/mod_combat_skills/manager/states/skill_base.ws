@@ -88,6 +88,12 @@ abstract state SkillBase in MCD_Manager {
       target
     );
 
+    movement_adjustor.MaxLocationAdjustmentDistance(
+      slide_ticket,
+      , // speed
+      1, // max distance on x and y
+    );
+
     thePlayer.UpdateCustomRotationHeading('MeleeSkill', VecHeading(target.GetWorldPosition() - thePlayer.GetWorldPosition()));
     thePlayer.SetCustomRotation('MeleeSkill', VecHeading(target.GetWorldPosition() - thePlayer.GetWorldPosition()), 0.f, 0.2f, false);
   }
