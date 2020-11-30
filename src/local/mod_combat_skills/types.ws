@@ -48,6 +48,5 @@ enum MCD_SkillBind {
   MCD_SkillBind_Backward = 2,
   MCD_SkillBind_Right = 3,
   MCD_SkillBind_ForwardOrBackward = 4,
-  MCD_SkillBind_LeftOrRight = 5,
-  MCD_SkillBind_None = 6
+  MCD_SkillBind_LeftOrRight = 5
 }
