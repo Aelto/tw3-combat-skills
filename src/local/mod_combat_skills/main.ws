@@ -13,7 +13,9 @@
 // if this function returns true, the current input event is cancelled early
 // Geralt won't parry.
 function modCombatSkillHandleActions(action: SInputAction): bool {
-  if (!mcd_isEnabled()) {
+  if (!mcd_isEnabled()
+   || !thePlayer.HasWeaponDrawn(false)
+   || thePlayer.HasBuff(EET_Tangled)) {
     return false;
   }
 
