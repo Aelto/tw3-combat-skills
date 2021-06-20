@@ -51,3 +51,10 @@ enum MCD_SkillBind {
   MCD_SkillBind_LeftOrRight = 5,
   MCD_SkillBind_None = 6
 }
+
+enum MCD_ShortDodgeBind {
+  MCD_ShortDodgeBind_Direct = 0,
+  MCD_ShortDodgeBind_DoubleTap = 1,
+  MCD_ShortDodgeBind_Both = 2,
+  MCD_ShortDodgeBind_None = 3,
+}

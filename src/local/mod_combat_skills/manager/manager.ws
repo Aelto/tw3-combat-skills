@@ -29,3 +29,12 @@ function MCD_managerGoToStateBash() {
 
   props.manager.GotoState('Bash');
 }
+
+function MCD_managerGoToStateShortDodge() {
+  var props: modCombatSkill_properties;
+
+  props = thePlayer.GetInputHandler()
+    .mod_combat_skill_properties;
+
+  props.manager.GotoState('ShortDodge');
+}

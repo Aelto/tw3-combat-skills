@@ -173,6 +173,25 @@
         <Var id="MCDsidestepInvulnerabilityStart" displayName="mcd_sidestep_invulnerability_start" displayType="SLIDER;0;500;500" />
 
         <Var id="MCDsidestepInvulnerabilityDuration" displayName="mcd_sidestep_invulnerability_duration" displayType="SLIDER;0;500;500" />
+
+        <Var id="MCDshortDodgeBind" displayName="mcd_short_dodge_bind" displayType="OPTIONS"> 	
+          <OptionsArray>
+            <Option id="0" displayName="mcd_bind_direct_dodge">
+              <Entry varId="MCDshortDodgeBind" value="0"/>
+            </Option>
+            <Option id="1" displayName="mcd_bind_double_tap_dodge">
+              <Entry varId="MCDshortDodgeBind" value="1"/>
+            </Option>
+            <Option id="2" displayName="mcd_bind_both_dodge">
+              <Entry varId="MCDshortDodgeBind" value="2"/>
+            </Option>
+            <Option id="3" displayName="mcd_bind_none">
+              <Entry varId="MCDshortDodgeBind" value="3"/>
+            </Option>
+          </OptionsArray>
+        </Var>
+
+        <Var id="MCDshortDodgeMaximumDistance" displayName="mcd_short_dodge_distance" displayType="SLIDER;0;10;200" />
         
         <Var id="MCDmodInitialized" displayName="mcd_mod_initialized" displayType="TOGGLE" />
     </VisibleVars>

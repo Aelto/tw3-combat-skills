@@ -7,8 +7,11 @@
 // - A melee skill is both a physical skill and a sidestep skill
 
 // Where to start:
-// everything in this mod starts from `modCombatSkillHandleActions()`
-// if you're looking for the changes made in code, search for this function.
+// everything in this mod starts in either
+// - modCombatSkillHandleActions()
+// - modCombatSkillShortDodgeDirect()
+// - modCombatSkillShortDodgeDoubleTap()
+// if you're looking for the changes made in code, search for these functions.
 
 // if this function returns true, the current input event is cancelled early
 // Geralt won't parry.
@@ -55,6 +58,48 @@ function modCombatSkillHandleActions(action: SInputAction): bool {
   }
 
   return false;
+}
+
+function modCombatSkillShortDodgeDirect() {
+  var short_dodge_bind: MCD_ShortDodgeBind;
+
+  if (!mcd_isEnabled()) {
+    return;
+  }
+
+  tryInstantiateCombatSkillManager();
+
+  short_dodge_bind = mcd_getShortDodgeBind();
+
+  if (short_dodge_bind != MCD_ShortDodgeBind_Direct
+  && short_dodge_bind != MCD_ShortDodgeBind_Both) {
+    return;
+  }
+
+  MCD_managerGoToStateShortDodge();
+}
+
+function modCombatSkillShortDodgeDoubleTap() {
+  var short_dodge_bind: MCD_ShortDodgeBind;
+
+  if (!mcd_isEnabled()) {
+    return;
+  }
+
+  tryInstantiateCombatSkillManager();
+
+  short_dodge_bind = mcd_getShortDodgeBind();
+
+  if (short_dodge_bind != MCD_ShortDodgeBind_DoubleTap
+  && short_dodge_bind != MCD_ShortDodgeBind_Both) {
+    return;
+  }
+
+  MCD_managerGoToStateShortDodge();
+}
+
+function limitDodgeDistance() {
+  
 }
 
 function shouldBindTrigger(bind: MCD_SkillBind): bool {

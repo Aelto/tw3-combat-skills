@@ -79,6 +79,14 @@ function mcd_getSidestepInvulnerabilityDuration(): float {
   ) / 1000;
 }
 
+function mcd_getShortDodgeMaximumDistance(): float {
+  return StringToFloat(
+    theGame
+    .GetInGameConfigWrapper()
+    .GetVarValue('MCDgeneral', 'MCDshortDodgeMaximumDistance')
+  );
+}
+
 function mcd_getKickBind(): MCD_SkillBind {
   return StringToInt(
     theGame
@@ -100,5 +108,13 @@ function mcd_getSidestepBind(): MCD_SkillBind {
     theGame
     .GetInGameConfigWrapper()
     .GetVarValue('MCDgeneral', 'MCDsidestepBind')
+  );
+}
+
+function mcd_getShortDodgeBind(): MCD_ShortDodgeBind {
+  return StringToInt(
+    theGame
+    .GetInGameConfigWrapper()
+    .GetVarValue('MCDgeneral', 'MCDshortDodgeBind')
   );
 }

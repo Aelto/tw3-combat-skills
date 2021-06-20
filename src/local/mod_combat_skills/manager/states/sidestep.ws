@@ -124,4 +124,10 @@ state Sidestep in MCD_Manager extends SkillBase {
   function getStaminaMultiplier(): float {
     return mcd_getSidestepSKillStaminaCostMultiplier();;
   }
+
+  event OnLeaveState( nextStateName : name ) {
+    super.OnLeaveState(nextStateName);
+
+    thePlayer.SetIsCurrentlyDodging(false, true);
+  }
 }

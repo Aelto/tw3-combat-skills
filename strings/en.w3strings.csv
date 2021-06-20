@@ -33,3 +33,8 @@
 2115312031|        |option_mcd_sidestep_invulnerability_start|<font color="#8a63d2">                       :</font> Invulnerability start (milliseconds)
 2115312032|        |option_mcd_sidestep_invulnerability_duration|<font color="#8a63d2">                       :</font> Invulnerability duration (milliseconds)
 2115312033|        |option_combatskills_initialized|<font color="#30a14e">Combat Skills</font> initialized
+2115312034|        |option_mcd_short_dodge_bind|<font color="#ffffff">Short dodge:</font> binding
+2115312035|        |preset_value_mcd_bind_direct_dodge|Direct dodge
+2115312036|        |preset_value_mcd_bind_double_tap_dodge|Double tap dodge
+2115312037|        |preset_value_mcd_bind_both_dodge|Both dodges
+2115312038|        |option_mcd_short_dodge_distance|<font color="#ffffff">                      :</font> maximum distance

@@ -56,46 +56,40 @@ abstract state SkillBase in MCD_Manager {
   function doMovementAdjustment() {
     var movement_adjustor: CMovementAdjustor;
     var slide_ticket: SMovementAdjustmentRequestTicket;
-    var target: CActor;
-
-    target = thePlayer.GetTarget();
 
     movement_adjustor = thePlayer
       .GetMovingAgentComponent()
       .GetMovementAdjustor();
 
-    slide_ticket = movement_adjustor.GetRequest( 'SidestepAwayFromTarget' );
+    slide_ticket = movement_adjustor.GetRequest( 'ShortDodge' );
 
     // cancel any adjustement made with the same name
-    movement_adjustor.CancelByName( 'SidestepAwayFromTarget' );
+    movement_adjustor.CancelByName( 'ShortDodge' );
 
     // and now we create a new request
-    slide_ticket = movement_adjustor.CreateNewRequest( 'SidestepAwayFromTarget' );
+    slide_ticket = movement_adjustor.CreateNewRequest( 'ShortDodge' );
 
     movement_adjustor.AdjustmentDuration(
       slide_ticket,
       0.25 // 250ms
     );
 
-    movement_adjustor.SlideTowards(
-      slide_ticket,
-      target,
-      1.5 // min distance of 1.5m between Geralt and the target
-    );
+    // movement_adjustor.SlideTowards(
+    //   slide_ticket,
+    //   target,
+    //   1.5 // min distance of 1.5m between Geralt and the target
+    // );
 
-    movement_adjustor.RotateTowards(
-      slide_ticket,
-      target
-    );
+    // movement_adjustor.RotateTowards(
+    //   slide_ticket,
+    //   target
+    // );
 
     movement_adjustor.MaxLocationAdjustmentDistance(
       slide_ticket,
       , // speed
       1, // max distance on x and y
     );
-
-    thePlayer.UpdateCustomRotationHeading('MeleeSkill', VecHeading(target.GetWorldPosition() - thePlayer.GetWorldPosition()));
-    thePlayer.SetCustomRotation('MeleeSkill', VecHeading(target.GetWorldPosition() - thePlayer.GetWorldPosition()), 0.f, 0.2f, false);
   }
 
   event OnLeaveState( nextStateName : name ) {
