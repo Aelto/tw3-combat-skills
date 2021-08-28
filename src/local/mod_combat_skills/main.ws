@@ -15,7 +15,8 @@
 function modCombatSkillHandleActions(action: SInputAction): bool {
   if (!mcd_isEnabled()
    || !thePlayer.HasWeaponDrawn(false)
-   || thePlayer.HasBuff(EET_Tangled)) {
+   || thePlayer.HasBuff(EET_Tangled)
+   || thePlayer.IsCiri()) {
     return false;
   }
 
