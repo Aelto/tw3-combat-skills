@@ -14,13 +14,11 @@ abstract state SkillBase in MCD_Manager {
   }
 
   function drainPlayerStamina(optional is_huge: bool) {
-    var cost: EStaminaActionType;
     var multiplier: float;
 
-    cost = this.getStaminaCost();
     multiplier = this.getStaminaMultiplier();
 
-    if (multiplier <= 0 || cost == ESAT_Undefined) {
+    if (multiplier <= 0) {
       return;
     }
 
@@ -29,12 +27,11 @@ abstract state SkillBase in MCD_Manager {
     }
 
     thePlayer.DrainStamina(
-      cost,
-      , // fixed value
+      ESAT_FixedValue,
+      multiplier, // fixed value
       , // fixed delay
       , // ability name
       1, // pause stamina regen duration
-      multiplier
     );
   }
 

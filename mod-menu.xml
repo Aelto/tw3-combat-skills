@@ -5,11 +5,8 @@
       <Preset id="0" displayName="mcd_defaults" >
         <Entry varId="MCDmodEnabled" value="1" />
 
-        <Entry varId="MCDphysicalSkillStaminaCostMultiplier" value="3" />
-        <Entry varId="MCDsidestepSkillStaminaCostMultiplier" value="1.5" />
-
-        <Entry varId="MCDphysicalSkillStaminaCostType" value="5" />
-        <Entry varId="MCDsidestepSkillStaminaCostType" value="5" />
+        <Entry varId="MCDphysicalSkillStaminaCostMultiplier" value="30" />
+        <Entry varId="MCDsidestepSkillStaminaCostMultiplier" value="15" />
 
         <Entry varId="MCDphysicalSkillCanConsumeAdrenaline" value="0" />
 
@@ -89,31 +86,7 @@
           </OptionsArray>
         </Var>
 
-        <Var id="MCDphysicalSkillStaminaCostType" displayName="mcd_physical_skill_stamina_cost_type" displayType="OPTIONS"> 	
-          <OptionsArray>
-            <Option id="0" displayName="mcd_cost_type_none">
-              <Entry varId="MCDphysicalSkillStaminaCostType" value="0"/>
-            </Option>
-            <Option id="1" displayName="mcd_cost_type_light_attack">
-              <Entry varId="MCDphysicalSkillStaminaCostType" value="1"/>
-            </Option>
-            <Option id="2" displayName="mcd_cost_type_heavy_attack">
-              <Entry varId="MCDphysicalSkillStaminaCostType" value="2"/>
-            </Option>
-            <Option id="3" displayName="mcd_cost_type_rend">
-              <Entry varId="MCDphysicalSkillStaminaCostType" value="3"/>
-            </Option>
-            <Option id="4" displayName="mcd_cost_type_dodge">
-              <Entry varId="MCDphysicalSkillStaminaCostType" value="4"/>
-            </Option>
-            <Option id="5" displayName="mcd_cost_type_roll">
-              <Entry varId="MCDphysicalSkillStaminaCostType" value="5"/>
-            </Option>
-          </OptionsArray>
-        </Var>
-
-
-        <Var id="MCDphysicalSkillStaminaCostMultiplier" displayName="mcd_physical_skill_stamina_cost_multiplier" displayType="SLIDER;0;10;20" />
+        <Var id="MCDphysicalSkillStaminaCostMultiplier" displayName="mcd_physical_skill_stamina_cost_multiplier" displayType="SLIDER;0;100;200" />
 
         <!-- <Var id="MCDphysicalSkillCanConsumeAdrenaline" displayName="mcd_physical_skill_can_consume_adrenaline" displayType="TOGGLE" /> -->
         
@@ -145,30 +118,7 @@
           </OptionsArray>
         </Var>
 
-        <Var id="MCDsidestepSkillStaminaCostType" displayName="mcd_sidestep_skill_stamina_cost_type" displayType="OPTIONS"> 	
-          <OptionsArray>
-            <Option id="0" displayName="mcd_cost_type_none">
-              <Entry varId="MCDsidestepSkillStaminaCostType" value="0"/>
-            </Option>
-            <Option id="1" displayName="mcd_cost_type_light_attack">
-              <Entry varId="MCDsidestepSkillStaminaCostType" value="1"/>
-            </Option>
-            <Option id="2" displayName="mcd_cost_type_heavy_attack">
-              <Entry varId="MCDsidestepSkillStaminaCostType" value="2"/>
-            </Option>
-            <Option id="3" displayName="mcd_cost_type_rend">
-              <Entry varId="MCDsidestepSkillStaminaCostType" value="3"/>
-            </Option>
-            <Option id="4" displayName="mcd_cost_type_dodge">
-              <Entry varId="MCDsidestepSkillStaminaCostType" value="4"/>
-            </Option>
-            <Option id="5" displayName="mcd_cost_type_roll">
-              <Entry varId="MCDsidestepSkillStaminaCostType" value="5"/>
-            </Option>
-          </OptionsArray>
-        </Var>
-
-        <Var id="MCDsidestepSkillStaminaCostMultiplier" displayName="mcd_sidestep_skill_stamina_cost_multiplier" displayType="SLIDER;0;10;20" />
+        <Var id="MCDsidestepSkillStaminaCostMultiplier" displayName="mcd_sidestep_skill_stamina_cost_multiplier" displayType="SLIDER;0;100;200" />
 
         <Var id="MCDsidestepInvulnerabilityStart" displayName="mcd_sidestep_invulnerability_start" displayType="SLIDER;0;500;500" />
 

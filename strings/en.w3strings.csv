@@ -6,8 +6,8 @@
 2115312004|        |preset_Mods_combat_mcd_name|Combat Skills
 2115312005|        |preset_value_mcd_defaults|Defaults
 2115312006|        |option_mcd_mod_enabled|<font color="#30a14e">MOD ENABLED</font>
-2115312007|        |option_mcd_physical_skill_stamina_cost_multiplier|<font color="#ffd33d">                       :</font> Stamina cost multiplier
-2115312008|        |option_mcd_sidestep_skill_stamina_cost_multiplier|<font color="#8a63d2">                       :</font> Stamina cost multiplier
+2115312007|        |option_mcd_physical_skill_stamina_cost_multiplier|<font color="#ffd33d">                       :</font> Stamina cost (%)
+2115312008|        |option_mcd_sidestep_skill_stamina_cost_multiplier|<font color="#8a63d2">                       :</font> Stamina cost (%)
 2115312009|        |option_mcd_physical_skill_can_consume_adrenaline|Physical skills can consume adrenaline (finishers)
 2115312010|        |option_mcd_mod_initialized|MOD INITIALIZED <font color="#ea4a5a">(CAUTION)</font>
 2115312011|        |preset_value_mcd_bind_forward|Forward (W)
