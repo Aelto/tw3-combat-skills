@@ -29,9 +29,9 @@ abstract state SkillBase in MCD_Manager {
     thePlayer.DrainStamina(
       ESAT_FixedValue,
       multiplier, // fixed value
-      , // fixed delay
+      1.5, // fixed delay
       , // ability name
-      1, // pause stamina regen duration
+      , // pause stamina regen duration
     );
   }
 
