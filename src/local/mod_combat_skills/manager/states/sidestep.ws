@@ -13,6 +13,18 @@ state Sidestep in MCD_Manager extends SkillBase {
   }
 
   entry function Sidestep_start() {
+    var is_too_far: bool;
+    is_too_far = this.isTooFarAway();
+
+    if (is_too_far && !mcd_getPhysicalSkillCanMiss()) {
+      // have no other choice than to do this now.
+      // otherwise the skill gets in cooldown even
+      // when it misses.
+      resetPhysicalSkillCooldown();
+      
+      return;
+    }
+
     this.doMovementAdjustment();
     this.Sidestep_playGeraltAnimation();
     this.drainPlayerStamina();
@@ -113,6 +125,13 @@ state Sidestep in MCD_Manager extends SkillBase {
       , // speed
       0.5, // max distance on x and y
     );
+  }
+
+  function isTooFarAway(): bool {
+    return VecDistance(
+      thePlayer.GetWorldPosition(),
+      thePlayer.GetTarget().GetWorldPosition(),
+    ) > 3;
   }
 
   function getStaminaCost(): EStaminaActionType {
