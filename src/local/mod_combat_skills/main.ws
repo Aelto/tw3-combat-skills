@@ -63,8 +63,8 @@ function shouldBindTrigger(bind: MCD_SkillBind): bool {
       || bind == MCD_SkillBind_Left && theInput.GetActionValue('GI_AxisLeftX') < -0.85
       || bind == MCD_SkillBind_Backward && theInput.GetActionValue('GI_AxisLeftY') < -0.85
       || bind == MCD_SkillBind_Right && theInput.GetActionValue('GI_AxisLeftX') > 0.85
-      || bind == MCD_SkillBind_ForwardOrBackward && theInput.GetActionValue('GI_AxisLeftY') != 0
-      || bind == MCD_SkillBind_LeftOrRight && theInput.GetActionValue('GI_AxisLeftX') != 0;
+      || bind == MCD_SkillBind_ForwardOrBackward && (theInput.GetActionValue('GI_AxisLeftY') < -0.85 || theInput.GetActionValue('GI_AxisLeftY') > 0.85)
+      || bind == MCD_SkillBind_LeftOrRight && (theInput.GetActionValue('GI_AxisLeftX') < -0.85 || theInput.GetActionValue('GI_AxisLeftX') > 0.85);
 }
 
 function canPerformPhysicalSkill(): bool {
