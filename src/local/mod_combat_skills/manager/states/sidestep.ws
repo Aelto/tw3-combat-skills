@@ -80,6 +80,10 @@ state Sidestep in MCD_Manager extends SkillBase {
     var mean_vector: Vector;
     var movement_adjustor: CMovementAdjustor;
     var slide_ticket: SMovementAdjustmentRequestTicket;
+    var distance_to_player: float;
+    var closest_distance: float;
+    var player_position: Vector;
+    var picked_index: int;
 
     FindGameplayEntitiesInRange(
       entities,
@@ -107,16 +111,43 @@ state Sidestep in MCD_Manager extends SkillBase {
       0.25 // 250ms
     );
 
+    player_position = thePlayer.GetWorldPosition();
+
     for (i = 0; i < entities.Size(); i += 1) {
+      distance_to_player = VecDistanceSquared2D(entities[i].GetWorldPosition(), player_position);
+
+      if (distance_to_player > 1.5) {
+        continue;
+      }
+
       movement_adjustor.SlideTowards(
         slide_ticket,
         entities[i],
-        1.5 // min distance of 1m between Geralt and the target
+        1.5 // min distance of 1.5m between Geralt and the target
       );
 
+      // movement_adjustor.RotateTowards(
+      //   slide_ticket,
+      //   entities[i]
+      // );
+    }
+
+    closest_distance = 1000;
+    picked_index = -1;
+
+    for (i = 0; i < entities.Size(); i += 1) {
+      distance_to_player = VecDistanceSquared2D(entities[i].GetWorldPosition(), player_position);
+
+      if (distance_to_player < closest_distance) {
+        closest_distance = distance_to_player;
+        picked_index = i;
+      }
+    }
+
+    if (picked_index >= 0) {
       movement_adjustor.RotateTowards(
         slide_ticket,
-        entities[i]
+        entities[picked_index]
       );
     }
 
