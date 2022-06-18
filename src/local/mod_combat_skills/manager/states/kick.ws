@@ -40,7 +40,7 @@ state Kick in MCD_Manager extends SkillBase {
   }
 
   function isTooFarAway(): bool {
-    return VecDistance(
+    return VecDistanceSquared2D(
       thePlayer.GetWorldPosition(),
       thePlayer.GetTarget().GetWorldPosition(),
     ) > 3;
