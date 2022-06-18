@@ -12,7 +12,8 @@ XCOPY "%modpath%\src\game\" "%modpath%\release\mods\%modname%\content\scripts\ga
 XCOPY "%modpath%\strings\" "%modpath%\release\mods\%modname%\content\" /e /s /y
 
 :: DLC content
-XCOPY "%modpath%\wk-project\packed\" "%modpath%\release\dlc\dlc%modname%\" /e /s /y
+@REM XCOPY "%modpath%\wk-project\packed\" "%modpath%\release\dlc\dlc%modname%\" /e /s /y
+XCOPY "%modpath%\light-dlc\" "%modpath%\release\dlc\" /e /s /y
 
 mkdir "%modpath%\release\bin\config\r4game\user_config_matrix\pc\"
 copy "%modPath%\mod-menu.xml" "%modpath%\release\bin\config\r4game\user_config_matrix\pc\%modname%.xml" /y
