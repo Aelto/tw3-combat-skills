@@ -22,6 +22,10 @@ function modCombatSkillHandleActions(action: SInputAction): bool {
 
   tryInstantiateCombatSkillManager();
 
+  if (!mcd_getPhysicalSkillCanMiss() && MCD_isTargetTooFar()) {
+    return false;
+  }
+
   // checking for sidesteps
   if (shouldBindTrigger(mcd_getSidestepBind())) {
     if (canPerformSidestepSkill() && hasEnoughStamina(PRT_SideStepSlash)) {
@@ -178,5 +182,12 @@ function hasEnoughStamina(repelType: EPlayerRepelType, optional is_huge: bool): 
     cost,,,
     multiplier
   );
+}
+
+function MCD_isTargetTooFar(): bool {
+  return VecDistance(
+    thePlayer.GetWorldPosition(),
+    thePlayer.GetTarget().GetWorldPosition(),
+  ) > 3;
 }
 // modCombatSkill - END
