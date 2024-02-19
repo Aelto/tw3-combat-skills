@@ -20,3 +20,8 @@ XCOPY "%modpath%\light-dlc\" "%modpath%\release\dlc\" /e /s /y
 :: mod menu
 mkdir "%modpath%\release\bin\config\r4game\user_config_matrix\pc\"
 copy "%modPath%\mod-menu.xml" "%modpath%\release\bin\config\r4game\user_config_matrix\pc\%modname%.xml" /y
+
+:: generate merges using cahirp
+tw3-cahirp build --game "%gamePath%" --recipes "%modpath%/release/mods/%modname%/cahirp" --out "%modpath%/release/mods/%modname%/content/scripts"
+
+tree %modpath%/release /F
